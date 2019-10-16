@@ -1,26 +1,83 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Spring } from "react-spring/renderprops";
+import VisibilitySensor from "./components/VisibilitySensor";
 
-function App() {
+// styles
+const centeredStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  height: "100%"
+};
+const h2Styles = {
+  fontSize: "82px",
+  // color: "white",
+  // backgroundColor: "black",
+  // padding: "16px 32px"
+};
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div
+        style={{
+          ...centeredStyles,
+          height: "100vh",
+          backgroundColor: "pink"
+        }}
+      >
+        <VisibilitySensor once>
+          {({ isVisible }) => (
+            <Spring delay={300} to={{ opacity: isVisible ? 1 : 0 }}>
+              {({ opacity }) => <h2 style={{ ...h2Styles, opacity }}>Hello</h2>}
+            </Spring>
+          )}
+        </VisibilitySensor>
+      </div>
+      <div
+        style={{
+          ...centeredStyles,
+          height: "100vh"
+        }}
+      >
+        <VisibilitySensor once partialVisibility>
+          {({ isVisible }) => (
+            <Spring
+              delay={300}
+              to={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateX(0)" : "translateX(200px)"
+              }}
+            >
+              {props => <h2 style={{ ...h2Styles, ...props }}>World</h2>}
+            </Spring>
+          )}
+        </VisibilitySensor>
+      </div>
+      <div
+        style={{
+          ...centeredStyles,
+          height: "100vh",
+          backgroundColor: "#afd4d4"
+        }}
+      >
+        <VisibilitySensor once partialVisibility offset={{ bottom: -400 }}>
+          {({ isVisible }) => (
+            <Spring
+              delay={300}
+              to={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(400px)"
+              }}
+            >
+              {props => <h2 style={{ ...h2Styles, ...props }}>!!!</h2>}
+            </Spring>
+          )}
+        </VisibilitySensor>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
