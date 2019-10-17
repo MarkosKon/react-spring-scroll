@@ -1,6 +1,7 @@
 import React from "react";
-import { Spring } from "react-spring/renderprops";
 import VisibilitySensor from "./components/VisibilitySensor";
+import "./App.css";
+
 
 // styles
 const centeredStyles = {
@@ -27,31 +28,14 @@ const App = () => {
           backgroundColor: "pink"
         }}
       >
-        <VisibilitySensor once>
+        <VisibilitySensor>
           {({ isVisible }) => (
-            <Spring delay={300} to={{ opacity: isVisible ? 1 : 0 }}>
-              {({ opacity }) => <h2 style={{ ...h2Styles, opacity }}>Hello</h2>}
-            </Spring>
-          )}
-        </VisibilitySensor>
-      </div>
-      <div
-        style={{
-          ...centeredStyles,
-          height: "100vh"
-        }}
-      >
-        <VisibilitySensor once partialVisibility>
-          {({ isVisible }) => (
-            <Spring
-              delay={300}
-              to={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateX(0)" : "translateX(200px)"
-              }}
+            <h2
+              className={isVisible ? "fadeIn enter" : "fadeIn"}
+              style={{ ...h2Styles }}
             >
-              {props => <h2 style={{ ...h2Styles, ...props }}>World</h2>}
-            </Spring>
+              Hello
+            </h2>
           )}
         </VisibilitySensor>
       </div>
@@ -59,20 +43,36 @@ const App = () => {
         style={{
           ...centeredStyles,
           height: "100vh",
-          backgroundColor: "#afd4d4"
+          overflow: "hidden"
         }}
       >
-        <VisibilitySensor once partialVisibility offset={{ bottom: -400 }}>
+        <VisibilitySensor partialVisibility>
           {({ isVisible }) => (
-            <Spring
-              delay={300}
-              to={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(400px)"
-              }}
+            <h2
+              className={isVisible ? "slideLeft enter" : "slideLeft"}
+              style={{ ...h2Styles }}
             >
-              {props => <h2 style={{ ...h2Styles, ...props }}>!!!</h2>}
-            </Spring>
+              World
+            </h2>
+          )}
+        </VisibilitySensor>
+      </div>
+      <div
+        style={{
+          ...centeredStyles,
+          height: "100vh",
+          backgroundColor: "#afd4d4",
+          overflow: "hidden"
+        }}
+      >
+        <VisibilitySensor partialVisibility offset={{ bottom: -400 }}>
+          {({ isVisible }) => (
+            <h2
+              className={isVisible ? "slideUp enter" : "slideUp"}
+              style={{ ...h2Styles }}
+            >
+              !!!
+            </h2>
           )}
         </VisibilitySensor>
       </div>

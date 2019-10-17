@@ -1,22 +1,39 @@
-.App {
-  text-align: center;
+.fadeIn {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
 }
-
-.App-logo {
-  height: 40vmin;
+.fadeIn.enter {
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.slideLeft {
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  opacity: 0;
+  transform: translateX(100%);
 }
-
-.App-link {
-  color: #09d3ac;
+.slideLeft.enter {
+  transition: opacity 1s ease-in-out,
+    transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 1;
+  transform: translateX(0);
+}
+.slideUp {
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  opacity: 0;
+  transform: translateY(100%);
+}
+.slideUp.enter {
+  transition: opacity 1s ease-in-out,
+    transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (print), (prefers-reduced-motion: reduce) {
+  .fadeIn,
+  .slideLeft,
+  .slideUp {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
 }
