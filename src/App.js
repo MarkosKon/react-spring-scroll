@@ -38,6 +38,7 @@ const App = () => {
       <div
         style={{
           ...centeredStyles,
+          overflow: 'hidden',
           height: "100vh"
         }}
       >
@@ -59,6 +60,7 @@ const App = () => {
         style={{
           ...centeredStyles,
           height: "100vh",
+          overflow: 'hidden',
           backgroundColor: "#afd4d4"
         }}
       >
